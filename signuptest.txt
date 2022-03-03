@@ -1,0 +1,212 @@
+<template>
+  <div>
+    <v-card
+      light
+      shaped
+      style="border-radius : 2rem; margin-top : 20px; color: black;"
+      class="mx-auto"
+      max-width="380"
+    >
+      <v-row>
+        <v-container>
+          <v-form>
+            <v-col
+              style="margin-top:-1rem;"
+              cols="12"
+              sm="6"
+              md="4"
+            />
+
+            <v-card-text>
+              <div style="color : #324875; margin-bottom:-2rem;">
+                <br><h3>Sign up bank account</h3><br><br>
+                <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+                >
+                  <div class="ss">
+                    <v-text-field
+                      v-model="username"
+                      label="Your Name"
+                      color="black"
+                      outlined
+                      light
+                    />
+                  </div>
+                  <div class="ss">
+                    <v-text-field
+                      v-model="account"
+                      label="Bank Account"
+                      color="black"
+                      outlined
+                      light
+                    />
+                  </div>
+                  <div class="ss">
+                    <v-text-field
+                      v-model="mobile"
+                      label="Mobile phone number"
+                      color="black"
+                      outlined
+                      light
+                    />
+                  </div>
+                  <div class="ss">
+                    <v-text-field
+                      v-model="email"
+                      label="Email"
+                      color="black"
+                      outlined
+                      light
+                    />
+                  </div>
+                  <div class="ss">
+                    <v-text-field
+                      v-model="passwd"
+                      label="Password"
+                      color="black"
+                      outlined
+                      light
+                      append-icon="mdi-eye"
+                    />
+                  </div>
+                </v-col>
+              </div>
+
+              <div
+                class="
+                      use"
+                style="color : black;"
+              >
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use 6 characters with a mix of numbers<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and letters</p>
+              </div>
+              <div class="check">
+                <v-checkbox
+                  style="border-color:black;"
+                  color="black"
+                />
+              </div>
+              <div class="check2">
+                <p>By signin up,you agree to<br>Bank's Term of Use & Privacy Policy.</p>
+              </div>
+              <v-col md="12" />
+              <v-btn
+                small
+                class="btn1"
+              >
+                <span class="txt3" @click="Save">Sign Up</span>
+              </v-btn>
+              <div class="or">
+                <p>OR</p>
+              </div>
+              <v-btn
+                small
+                class="btn2"
+              >
+                <span class="txt3" @click="Clear">Cancel</span>
+              </v-btn>
+            </v-card-text>
+          </v-form>
+        </v-container>
+      </v-row>
+      <div class="al" style="color : black;">
+        <p>Already signed up ? <a href="#">Log in</a></p>
+      </div>
+
+      <br>
+    </v-card>
+  </div>
+</template>
+<script>
+import axios from 'axios'
+export default {
+  data: () => ({
+    username: '',
+    account: '',
+    mobile: '',
+    email: '',
+    passwd: ''
+
+  }),
+  mathods: {
+    async Save () {
+      const std = {
+        username: this.username,
+        account: this.account,
+        mobile: this.mobile,
+        email: this.email,
+        passwd: this.passwd
+      }
+      console.log('user:', std)
+      const res = await axios.post('http://localhost:7001/save', std)
+      console.log(res.data)
+    }
+  }
+}
+
+</script>
+
+<style>
+.mx-auto {
+  border-radius: 3rem;
+}
+.ss{
+  margin-top: -20px;
+}
+.v-text-field--outlined fieldset{
+  color: #27272c !important;
+  width: 20rem;
+  height: 3.2rem;
+}
+.v-text-field--outlined label{
+  color: #27272c !important;
+  font-size: 13px;
+  margin-top: -3px;
+}
+.use p{
+  color: rgb(104, 104, 177);
+  margin-top: -1rem;
+  text-align: left;
+}
+.check {
+  padding-left: 2.5rem;
+  width: 4rem;
+}
+.check2{
+  margin-top: -3rem;
+}
+.check2 p{
+  color: #000000;
+  text-align: left;
+  margin-left: 5rem;
+}
+.btn{
+  margin-left: 4rem;
+}
+.btn1{
+  background: linear-gradient(to bottom,#ffeb3b,#ffc107);
+  margin-top: 20px;
+  margin-left: -15rem;
+}
+.btn1 p{
+  color: black;
+  margin-bottom: -4px;
+
+}
+.btn2{
+  margin-top: -70px;
+  margin-left: 7rem;
+}
+.btn2 p{
+  margin-top: 20px;
+}
+.btn p{
+  color: #000000;
+}
+.or {
+  margin-left: -4rem;
+  margin-top: -2rem;
+}
+
+</style>
